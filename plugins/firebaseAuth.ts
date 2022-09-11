@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { initUser } from "~~/composables/useFirebase";
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig();
   // Your web app's Firebase configuration
@@ -15,4 +16,5 @@ export default defineNuxtPlugin((nuxtApp) => {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   //console.log(app);
+  initUser();
 });

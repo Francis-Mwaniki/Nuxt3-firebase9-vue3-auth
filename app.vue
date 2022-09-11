@@ -1,15 +1,27 @@
 <template>
   <div>
-    <button class="button" @click="signIn">sign In</button>
-    <button class="button" @click="signOut">sign Out</button>
-    <pre>
-      {{ credential }}
-    </pre>
+    <button class="button" @click="signIn" v-if="!firebaseUser">sign In</button>
+    <button class="button" @click="signOut" v-if="firebaseUser">
+      sign Out
+    </button>
+    <div v-if="firebaseUser">
+      <pre>
+      {{ firebaseUser }}
+    </pre
+      >
+    </div>
+    <div v-else>
+      <h2>User is'nt signed in</h2>
+    </div>
   </div>
 </template>
 
 <script setup>
+import { signInUser } from "~~/composables/useFirebase";
+import { signOutUser } from "~~/composables/useFirebase";
+import { useFirebaseUser } from "@/composables/useState";
 const credential = ref();
+const firebaseUser = useFirebaseUser();
 const signIn = async () => {
   //signing existing user
   const email = "francismwaniki630@gmail.com";
