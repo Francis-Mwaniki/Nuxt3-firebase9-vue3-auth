@@ -2,30 +2,25 @@
   <div>
     <button class="button" @click="signIn">sign In</button>
     <button class="button" @click="signOut">sign Out</button>
+    <pre>
+      {{ credential }}
+    </pre>
   </div>
 </template>
 
 <script setup>
+const credential = ref();
 const signIn = async () => {
   //signing existing user
   const email = "francismwaniki630@gmail.com";
   const password = 123456;
-  const credential = await signInUser(email, password);
-  console.log("user", credential);
+  credential.value = await signInUser(email, password);
 };
 const signOut = async () => {
   //signing out user
-  const result = await signOutUser();
-  console.log("sign Out:", result);
+  credential.value = await signOutUser();
 };
 console.log("----App----");
-onMounted(async () => {
-  //creating new user
-  /* const email = "francismwaniki630@gmail.com";
-  const password = 123456;
-  const credential = await createUser(email, password);
-  console.log(`User Credentials:${credential}`); */
-});
 </script>
 
 <style>
